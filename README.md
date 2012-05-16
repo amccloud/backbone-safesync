@@ -17,8 +17,8 @@ var xhr2 = bookSearch.fetch({ // and this request took 50ms
     }
 });
 
-xhr1.state(); # 'rejected'
-xhr2.state(); # 'pending'
+xhr1.state(); // 'rejected'
+xhr2.state(); // 'pending'
 ```
 
 ## Why? ##
@@ -48,7 +48,7 @@ var xhr2 = bookSearch.fetch({
     }
 });
 
-xhr1.state(); # 'pending'
-xhr2.state(); # 'pending'
+xhr1.state(); // 'pending'
+xhr2.state(); // 'pending'
 
 ```
