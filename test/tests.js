@@ -39,7 +39,7 @@ test("test multiple collections", function() {
     var xhr2_1 = bookSearch2.fetch();
     var xhr2_2 = bookSearch2.fetch();
 
-    equal(xhr1_1.state(), 'pending');
     equal(xhr2_1.state(), 'rejected');
+    equal(xhr1_1.state(), 'pending');
     equal(xhr2_2.state(), 'pending');
 });
