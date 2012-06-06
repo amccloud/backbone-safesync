@@ -4,7 +4,7 @@
         var lastXHR = model._lastXHR && model._lastXHR[method];
 
         if ((lastXHR && lastXHR.state() == 'pending') && (options && options.safe !== false))
-            lastXHR.abort();
+            lastXHR.abort('stale');
 
         if (!model._lastXHR)
             model._lastXHR = {};

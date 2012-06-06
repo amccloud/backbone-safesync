@@ -24,8 +24,8 @@ test("test unsafe", function() {
 
     var xhr1 = bookSearch.fetch(),
         xhr2 = bookSearch.fetch({
-        safe: false
-    });
+            safe: false
+        });
 
     equal(xhr1.state(), 'pending');
     equal(xhr2.state(), 'pending');
@@ -42,4 +42,30 @@ test("test multiple collections", function() {
     equal(xhr2_1.state(), 'rejected');
     equal(xhr1_1.state(), 'pending');
     equal(xhr2_2.state(), 'pending');
+});
+
+asyncTest("aborted vs stale", 4, function() {
+    var bookSearch = new Books([], {
+        searchTerm: 'backbonejs'
+    });
+
+    var xhr1 = bookSearch.fetch();
+
+    xhr1.fail(function(xhr, status) {
+        equal(status, 'abort');
+    });
+
+    xhr1.abort();
+
+    var xhr2 = bookSearch.fetch();
+
+    xhr2.fail(function(xhr, status) {
+        equal(status, 'stale');
+    });
+
+    var xhr3 = bookSearch.fetch();
+
+    equal(xhr2.state(), 'rejected');
+    equal(xhr3.state(), 'pending');
+    start();
 });
